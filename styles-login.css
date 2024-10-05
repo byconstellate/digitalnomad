@@ -1,0 +1,101 @@
+/* General Styles */
+html, body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    color: #f150c6;
+}
+
+/* Container Styles */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+}
+
+.login-content {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 36px;
+    font-family: 'Billabong', sans-serif;
+    margin-bottom: 20px;
+    color: #88fff7;
+}
+
+.form input {
+    width: 95%;
+    padding: 12px;
+    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    font-size: 16px;
+}
+
+/* Change outline color to orange on focus */
+.form input:focus {
+    outline: 2px solid #ffffff; /* Orange outline */
+}
+
+.button {
+    width: 100%;
+    padding: 12px;
+    background-color: #f038de;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #2ae484;
+}
+
+.error-message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: rgb(0, 208, 255);
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 20px;
+    color: #3897f0;
+    text-decoration: none;
+}
+
+.signup-container {
+    text-align: center;
+    padding: 20px;
+    margin-top: 10px;
+    background-color: #ffffff;
+    width: 100%;
+}
+
+.signup-container p {
+    margin: 0;
+}
+
+.signup-container a {
+    color: #3897f0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-container a:hover {
+    text-decoration: underline;
+}
