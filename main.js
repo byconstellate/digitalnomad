@@ -47,7 +47,7 @@ function createWindow() {
         movable: false,
     });
 
-    mainWindow.loadFile('login.html');
+    mainWindow.loadFile('index.html');
     mainWindow.webContents.openDevTools();
 
     mainWindow.webContents.on('did-finish-load', () => {
