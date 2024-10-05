@@ -40,12 +40,13 @@
             color: #ff00ff; /* Fuchsia text color */
             text-align: center;
             position: absolute; /* Positioned relative to the body */
-            bottom: 20%; /* Position the affirmation text in the bottom 20% */
+            bottom: 30%; /* Position the affirmation text in the bottom 20% */
             width: 100%; /* Full width */
             padding: 20px; /* Padding from the bottom */
             background-color: transparent; /* Clear background color */
             box-sizing: border-box; /* Include padding in width calculation */
             display: none; /* Initially hide the affirmation text */
+            z-index: 1; /* Ensure text is above buttons */
         }
         .affirmation.visible {
             display: block; /* Show the affirmation text when visible */
@@ -53,14 +54,15 @@
     </style>
 </head>
 <body>
-    <div id="playButton">Play</div>
-    <div id="nextButton">Next</div>
-    <div id="prevButton">Back</div>
     <audio id="audioPlayer" muted>
         <source id="audioSource" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
     <div id="affirmation" class="affirmation"></div>
+    
+    <div id="playButton">Play</div>
+    <div id="nextButton">Next</div>
+    <div id="prevButton">Back</div>
 
     <script>
         // Array of objects with affirmations and their corresponding audio URLs
@@ -83,7 +85,7 @@
             },
             {
                 text: "I make sales every day",
-                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/i%20make%20%24%20everyday.mp3"
+                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/imake%24everyday.mp3" // Corrected URL
             },
             {
                 text: "I instantly made money online",
