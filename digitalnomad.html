@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Audio Player</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMcN90TtC0IF38EgrZ6nZ7x0Vn4e1Z7Bl1kY0w" crossorigin="anonymous">
+    <title>Custom Play Button</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,61 +12,60 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column; /* Arrange elements in a column */
             background-color: #ffffff; /* White background */
+            flex-direction: column; /* Arrange elements in a column */
+            position: relative; /* For positioning the affirmation text */
         }
-        #buttons {
-            display: flex; /* Arrange buttons in a row */
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .button {
-            width: 80px;
-            height: 80px;
-            background-color: #007bff; /* Blue color */
+        #playButton {
+            width: 200px;
+            height: 200px;
+            background-color: #00bcd4; /* Cyan color */
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-            margin: 10px; /* Space between buttons */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.3s; /* Smooth background color transition */
-        }
-        .button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-        .button i {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            position: absolute; /* Positioned relative to the body */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex; /* Flexbox for center alignment */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            font-size: 48px; /* Icon size */
             color: white; /* Icon color */
-            font-size: 36px; /* Make the icons larger */
+        }
+        #playButton:hover {
+            background-color: #00acc1; /* Darker cyan on hover */
+        }
+        #audioPlayer {
+            display: none; /* Hide the default audio player */
         }
         .affirmation {
             font-family: Courier, monospace;
-            font-size: 36px; /* Larger text */
+            font-size: 48px; /* Twice as large */
             color: #ff00ff; /* Fuchsia text color */
             text-align: center;
-            margin-bottom: 30px; /* Space above the buttons */
-            padding: 0 20px; /* Padding to prevent text overflow */
+            position: absolute; /* Positioned relative to the body */
+            bottom: 0; /* Align to the bottom */
+            width: 100%; /* Full width */
+            padding: 20px; /* Padding from the bottom */
+            background-color: transparent; /* Clear background color */
+            box-sizing: border-box; /* Include padding in width calculation */
+            display: none; /* Initially hide the affirmation text */
+        }
+        .affirmation.visible {
+            display: block; /* Show the affirmation text when visible */
         }
     </style>
 </head>
 <body>
-    <!-- Display affirmation text -->
-    <div id="affirmation" class="affirmation">Press Play to start affirmations</div>
-    
-    <!-- Custom control buttons -->
-    <div id="buttons">
-        <div id="prevButton" class="button"><i class="fas fa-backward"></i></div>
-        <div id="playButton" class="button"><i class="fas fa-play"></i></div>
-        <div id="nextButton" class="button"><i class="fas fa-forward"></i></div>
-    </div>
-
-    <!-- Audio player (hidden) -->
-    <audio id="audioPlayer">
+    <div id="playButton"><i class="fas fa-play"></i></div>
+    <audio id="audioPlayer" muted>
         <source id="audioSource" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
+    <div id="affirmation" class="affirmation"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     <script>
         // Array of objects with affirmations and their corresponding audio URLs
         const affirmations = [
@@ -109,51 +107,59 @@
         shuffleArray(affirmations);
 
         // Track index for current playing affirmation
-        let currentIndex = -1;
+        let currentIndex = 0;
 
         // Function to play the current affirmation
         function playCurrentAffirmation() {
             const audioPlayer = document.getElementById('audioPlayer');
             const audioSource = document.getElementById('audioSource');
+            const playButton = document.getElementById('playButton');
             const affirmationElement = document.getElementById('affirmation');
 
-            // Increment currentIndex to get the next affirmation
-            currentIndex = (currentIndex + 1) % affirmations.length;
+            if (affirmations.length === 0) {
+                console.error('No affirmations available to play.');
+                return;
+            }
 
             // Get the current affirmation
             const selectedAffirmation = affirmations[currentIndex];
 
-            // Set the affirmation text and audio URL
-            affirmationElement.textContent = selectedAffirmation.text;
-            audioSource.src = selectedAffirmation.url;
+            if (selectedAffirmation) {
+                // Set the affirmation text and audio URL
+                affirmationElement.textContent = selectedAffirmation.text;
+                audioSource.src = selectedAffirmation.url;
 
-            // Play the audio
-            audioPlayer.load();
-            audioPlayer.play();
+                // Hide the play button
+                playButton.style.display = 'none';
+
+                // Show the affirmation
+                affirmationElement.classList.add('visible');
+
+                // Play the audio and handle transitions
+                audioPlayer.load();
+                audioPlayer.muted = false;
+                audioPlayer.play().catch(error => {
+                    console.error('Playback error:', error);
+                });
+
+                // Hide affirmation when audio ends and play the next affirmation
+                audioPlayer.onended = function() {
+                    affirmationElement.classList.remove('visible');
+                    playButton.style.display = 'block'; // Show the play button again
+
+                    // Move to the next track or loop
+                    currentIndex = (currentIndex + 1) % affirmations.length;
+                    playCurrentAffirmation();
+                };
+            } else {
+                console.error('No affirmation found to play.');
+            }
         }
 
-        // Function to play the previous affirmation
-        function playPreviousAffirmation() {
-            const audioPlayer = document.getElementById('audioPlayer');
-            const audioSource = document.getElementById('audioSource');
-            const affirmationElement = document.getElementById('affirmation');
-
-            // Move to the previous affirmation
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : affirmations.length - 1;
-
-            const selectedAffirmation = affirmations[currentIndex];
-            affirmationElement.textContent = selectedAffirmation.text;
-            audioSource.src = selectedAffirmation.url;
-
-            // Play the audio
-            audioPlayer.load();
-            audioPlayer.play();
-        }
-
-        // Event listeners for button clicks
-        document.getElementById('playButton').addEventListener('click', playCurrentAffirmation);
-        document.getElementById('nextButton').addEventListener('click', playCurrentAffirmation);
-        document.getElementById('prevButton').addEventListener('click', playPreviousAffirmation);
+        // Event listener to handle the play button click
+        document.getElementById('playButton').addEventListener('click', () => {
+            playCurrentAffirmation();
+        });
     </script>
 </body>
 </html>
