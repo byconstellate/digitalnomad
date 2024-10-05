@@ -12,7 +12,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center/cover; /* Banner image URL */
+            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center fixed; /* Fixed background */
+            background-size: cover; /* Make sure the image covers the entire height */
             flex-direction: column; /* Arrange elements in a column */
             position: relative; /* For positioning the affirmation text */
         }
@@ -41,7 +42,7 @@
         }
         .affirmation {
             font-family: Courier, monospace;
-            font-size: 96px; /* Increased size for affirmation text (2x larger) */
+            font-size: 96px; /* Increased size for affirmation text */
             color: white; /* Change text color to white */
             text-align: center;
             position: absolute; /* Positioned relative to the body */
