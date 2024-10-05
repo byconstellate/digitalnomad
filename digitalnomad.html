@@ -10,10 +10,9 @@
             margin: 0;
             height: 100vh; /* Full viewport height */
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-end; /* Align items to the bottom */
+            justify-content: center; /* Center horizontally */
             background-color: #ffffff; /* White background */
-            flex-direction: column; /* Arrange elements in a column */
             position: relative; /* For positioning the affirmation text */
         }
         #playButton, #nextButton, #prevButton {
@@ -29,6 +28,8 @@
             justify-content: center;
             color: white;
             font-size: 24px; /* Font size for button text */
+            position: absolute; /* Position buttons absolutely */
+            bottom: 10%; /* Position buttons 10% from the bottom */
         }
         #playButton:hover, #nextButton:hover, #prevButton:hover {
             background-color: #00acc1; /* Darker cyan on hover */
@@ -42,7 +43,7 @@
             color: #ff00ff; /* Fuchsia text color */
             text-align: center;
             position: absolute; /* Positioned relative to the body */
-            bottom: 0; /* Align to the bottom */
+            bottom: 20%; /* Position the affirmation text in the bottom 20% */
             width: 100%; /* Full width */
             padding: 20px; /* Padding from the bottom */
             background-color: transparent; /* Clear background color */
