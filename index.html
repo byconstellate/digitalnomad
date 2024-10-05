@@ -45,7 +45,7 @@
             var password = document.getElementById('password').value;
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    window.location.href = 'navbar.html';
+                    window.location.href = 'digitalnomad.html';
                 })
                 .catch((error) => {
                     document.getElementById('error-message').innerText = error.message;
