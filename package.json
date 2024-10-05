@@ -1,0 +1,49 @@
+{
+  "name": "UTOPIA",
+  "author": "constellate",
+  "version": "1.0.0",
+  "description": "UTOPIA",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.yourdomain.constellate",
+    "productName": "UTOPIA",
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "icon.png"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "byconstellate",
+      "repo": "utopia"
+    }
+  },
+  "devDependencies": {
+    "electron": "^32.0.2",
+    "electron-builder": "^23.3.3",
+    "electron-reload": "^1.5.0"
+  },
+  "dependencies": {
+    "@zoomus/websdk": "^2.18.3",
+    "dotenv": "^16.4.5",
+    "electron-updater": "^6.2.1",
+    "firebase": "^10.12.2",
+    "pyscript": "^1.0.6",
+    "react-firebase-hooks": "^5.1.1",
+    "video.js": "^8.12.0",
+    "videojs-youtube": "^3.0.1",
+    "ytdl-core": "^4.11.5"
+  }
+}
