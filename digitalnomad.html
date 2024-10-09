@@ -17,26 +17,6 @@
             flex-direction: column; /* Arrange elements in a column */
             position: relative; /* For positioning the affirmation text */
         }
-        #playButton {
-            width: 200px;
-            height: 200px;
-            background-color: #00bcd4; /* Cyan color */
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            position: absolute; /* Positioned relative to the body */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex; /* Flexbox for center alignment */
-            align-items: center; /* Center vertically */
-            justify-content: center; /* Center horizontally */
-            font-size: 48px; /* Icon size */
-            color: white; /* Icon color */
-        }
-        #playButton:hover {
-            background-color: #00acc1; /* Darker cyan on hover */
-        }
         #audioPlayer {
             display: none; /* Hide the default audio player */
         }
@@ -59,7 +39,6 @@
     </style>
 </head>
 <body>
-    <div id="playButton"><i class="fas fa-play"></i></div>
     <audio id="audioPlayer" muted>
         <source id="audioSource" type="audio/mp3">
         Your browser does not support the audio element.
@@ -118,7 +97,6 @@
         function playCurrentAffirmation() {
             const audioPlayer = document.getElementById('audioPlayer');
             const audioSource = document.getElementById('audioSource');
-            const playButton = document.getElementById('playButton');
             const affirmationElement = document.getElementById('affirmation');
 
             if (affirmations.length === 0) {
@@ -134,9 +112,6 @@
                 affirmationElement.textContent = selectedAffirmation.text;
                 audioSource.src = selectedAffirmation.url;
 
-                // Hide the play button
-                playButton.style.display = 'none';
-
                 // Show the affirmation
                 affirmationElement.classList.add('visible');
 
@@ -149,9 +124,7 @@
 
                 // Hide affirmation when audio ends and play the next affirmation
                 audioPlayer.onended = function() {
-                    affirmationElement.classList.remove('visible');
-                    playButton.style.display = 'block'; // Show the play button again
-
+                    affirmationElement.classList.remove('visible'); // Hide affirmation
                     // Move to the next track or loop
                     currentIndex = (currentIndex + 1) % affirmations.length;
                     playCurrentAffirmation();
@@ -161,10 +134,8 @@
             }
         }
 
-        // Event listener to handle the play button click
-        document.getElementById('playButton').addEventListener('click', () => {
-            playCurrentAffirmation();
-        });
+        // Start playing the first affirmation automatically
+        playCurrentAffirmation();
     </script>
 </body>
 </html>
