@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Play Button</title>
+    <title>Digital Nomad Experience</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -117,8 +117,9 @@
 
                 // Play the audio and handle transitions
                 audioPlayer.load();
-                audioPlayer.muted = false;
-                audioPlayer.play().catch(error => {
+                audioPlayer.play().then(() => {
+                    audioPlayer.muted = false; // Unmute after loading
+                }).catch(error => {
                     console.error('Playback error:', error);
                 });
 
