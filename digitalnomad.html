@@ -135,8 +135,8 @@
             }
         }
 
-        // Start playing the first affirmation automatically
-        playCurrentAffirmation();
+        // Start playing the first affirmation after a short delay to ensure autoplay works
+        setTimeout(playCurrentAffirmation, 100); // Delay of 100 milliseconds
     </script>
 </body>
 </html>
