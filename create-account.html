@@ -110,9 +110,7 @@
             messagingSenderId: "1067431241975",
             appId: "1:1067431241975:web:ed7781dca93ca960d8cbf2"
         };
-       
 
-        
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
     </script>
@@ -158,8 +156,8 @@
                             email: email
                         }).then(() => {
                             document.getElementById('create-message').innerText = 'Account created successfully!';
-                            // Redirect to navbar.html
-                            window.location.href = 'navbar.html';
+                            // Redirect to the digitalnomad.html on GitHub Pages
+                            window.location.href = 'https://byconstellate.github.io/digitalnomad/digitalnomad.html';
                         }).catch((error) => {
                             document.getElementById('create-message').innerText = 'Error saving user details: ' + error.message;
                         });
@@ -184,7 +182,7 @@
                                             email: email
                                         }).then(() => {
                                             document.getElementById('create-message').innerText = 'Account created successfully!';
-                                            window.location.href = 'digitalnomad.html';
+                                            window.location.href = 'https://byconstellate.github.io/digitalnomad/digitalnomad.html';
                                         }).catch((error) => {
                                             document.getElementById('create-message').innerText = 'Error saving user details: ' + error.message;
                                         });
