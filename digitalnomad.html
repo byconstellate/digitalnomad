@@ -12,41 +12,38 @@
             overflow: hidden; /* Prevent scrolling */
         }
         body {
-            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center fixed; /* Fixed background */
-            background-size: cover; /* Make sure the image covers the entire height */
             display: flex;
-            align-items: center;
-            justify-content: center;
             flex-direction: column; /* Arrange elements in a column */
-            position: relative; /* For positioning the affirmation text */
+            position: relative; /* For positioning the footer */
+        }
+        .background {
+            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center; /* Fixed background */
+            background-size: cover; /* Make sure the image covers the top part */
+            height: 80%; /* Height for the image section */
+        }
+        .footer {
+            background-color: #00bcd4; /* Cyan color */
+            color: white; /* Text color */
+            text-align: center; /* Center the text */
+            font-size: 36px; /* Font size for the affirmation */
+            padding: 20px; /* Padding for the footer */
+            position: relative; /* For positioning */
         }
         #audioPlayer {
             display: none; /* Hide the default audio player */
         }
-        .affirmation {
-            font-family: Courier, monospace;
-            font-size: 96px; /* Increased size for affirmation text */
-            color: white; /* Change text color to white */
-            text-align: center;
-            position: absolute; /* Positioned relative to the body */
-            bottom: 0; /* Align to the bottom */
-            width: 100%; /* Full width */
-            padding: 20px; /* Padding from the bottom */
-            background-color: transparent; /* Clear background color */
-            box-sizing: border-box; /* Include padding in width calculation */
-            display: none; /* Initially hide the affirmation text */
-        }
-        .affirmation.visible {
-            display: block; /* Show the affirmation text when visible */
-        }
     </style>
 </head>
 <body>
-    <audio id="audioPlayer" muted autoplay>
-        <source id="audioSource" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
-    <div id="affirmation" class="affirmation"></div>
+    <div class="background"></div> <!-- Background image section -->
+    
+    <div class="footer">
+        <audio id="audioPlayer" muted autoplay>
+            <source id="audioSource" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <div id="affirmation" class="affirmation"></div>
+    </div>
 
     <script>
         // Array of objects with affirmations and their corresponding audio URLs
