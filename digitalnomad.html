@@ -8,17 +8,17 @@
         html, body {
             height: 100%; /* Ensure full height */
             margin: 0; /* Remove default margin */
-            overflow: hidden; /* Prevent scrolling */
         }
         body {
             display: flex;
             flex-direction: column; /* Arrange elements in a column */
             position: relative; /* For positioning the footer */
+            overflow: auto; /* Enable scrolling */
         }
         .background {
             background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center; /* Fixed background */
             background-size: cover; /* Ensure the image covers the top part */
-            height: 80%; /* Height for the image section */
+            height: 100vh; /* Full height for the image section */
         }
         .footer {
             background-color: #00FFFF; /* Cyan color */
@@ -27,6 +27,7 @@
             font-size: 48px; /* Adjusted font size for the affirmation */
             padding: 20px; /* Padding for the footer */
             box-sizing: border-box; /* Include padding in width calculation */
+            position: relative; /* Positioned relative to the body */
         }
         #audioPlayer {
             display: none; /* Hide the default audio player */
