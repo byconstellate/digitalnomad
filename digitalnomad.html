@@ -8,107 +8,107 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         html, body {
-            height: 100%; /* Ensure full height */
+            height: 100%; /* Full height for both HTML and body */
             margin: 0; /* Remove default margin */
-        }
-        body {
             display: flex;
-            flex-direction: column; /* Arrange elements in a column */
+            flex-direction: column;
         }
-        .scrollable-content {
-            flex: 1; /* Take up remaining space */
-            overflow-y: auto; /* Allow vertical scrolling */
-            display: none; /* Initially hidden on mobile */
+
+        /* Main container that holds everything */
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
-        .image-container img {
+
+        /* Image container */
+        .image-container {
+            flex-grow: 1;
             display: block;
-            width: 100%; /* Make image span the full width */
-            height: auto; /* Ensure the image maintains its aspect ratio */
         }
+
+        /* Ensure the image takes full width, but not more than needed vertically */
+        .image-container img {
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            display: block;
+        }
+
+        /* Footer that takes up the remaining space */
         .footer {
-            position: fixed; /* Fix the footer at the bottom */
-            bottom: 0;
-            width: 100%; /* Ensure the footer takes the full width */
-            background-color: #00FFFF; /* Cyan color */
-            color: white; /* Text color */
-            text-align: center; /* Center the text */
-            font-size: 24px; /* Adjusted font size for the affirmation */
-            padding: 20px; /* Padding for the footer */
-            box-sizing: border-box; /* Include padding in width calculation */
+            background-color: #00FFFF; /* Cyan background */
+            color: white; /* White text */
+            text-align: center; /* Centered text */
+            font-size: 24px; /* Text size */
+            padding: 20px; /* Padding inside the footer */
+            box-sizing: border-box; /* Include padding in size calculations */
+            height: calc(100vh - 100%); /* Fill the remaining height */
         }
+
+        /* Style for the affirmation text */
         .affirmation {
             font-family: Courier, monospace;
-            font-size: 32px; /* Adjusted size for affirmation text */
-            color: white; /* Change text color to white */
-            margin: 0; /* Remove margin */
-            padding: 0; /* Remove padding */
+            font-size: 32px; /* Affirmation text size */
+            color: white;
+            margin: 0;
+            padding: 0;
         }
-        .affirmation.visible {
-            display: block; /* Show the affirmation text when visible */
+
+        /* Media query to adjust font size for larger screens */
+        @media (min-width: 768px) {
+            .affirmation {
+                font-size: 36px;
+            }
         }
-        
-        /* Style for the play button */
+
+        /* Play button (hidden on desktop) */
         .play-button {
-            background-color: #00FFFF; /* Button color */
-            color: white; /* Text color */
-            border: none; /* Remove border */
-            font-size: 80px; /* Button font size */
-            cursor: pointer; /* Pointer on hover */
+            background-color: #00FFFF;
+            color: white;
+            font-size: 36px;
+            border: none;
+            cursor: pointer;
             display: none; /* Hidden by default */
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Full screen button */
-            width: 100vw; /* Full width for button */
-            text-align: center;
         }
 
-        /* Show the play button only on mobile (width <= 768px) */
+        /* Show the play button on mobile */
         @media only screen and (max-width: 768px) {
             .play-button {
-                display: flex; /* Show the button on mobile */
-                justify-content: center;
-                align-items: center;
-                font-size: 80px; /* Adjusted icon size for mobile */
+                display: flex;
+                width: 100vw;
+                height: 100vh;
             }
-            .scrollable-content {
-                display: none; /* Hide the image container on mobile until played */
+
+            /* Adjust footer for mobile */
+            .footer {
+                height: auto;
+                padding: 10px;
             }
         }
 
-        /* Hide the play button and show the image on larger screens */
-        @media only screen and (min-width: 769px) {
-            .play-button {
-                display: none; /* Hide the button on desktop */
-            }
-            .scrollable-content {
-                display: block; /* Show the image container on larger screens */
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="scrollable-content" id="contentSection">
+    <div class="container">
         <div class="image-container">
-            <img src="https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp" alt="Digital Nomad Image"> <!-- Image that will scroll -->
+            <!-- Image that will scroll -->
+            <img src="https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp" alt="Digital Nomad Image">
         </div>
-    </div>
-    
-    <div class="footer">
-        <audio id="audioPlayer" muted autoplay>
-            <source id="audioSource" type="audio/mp3">
-            Your browser does not support the audio element.
-        </audio>
-        <div id="affirmation" class="affirmation">I love being a digital nomad</div>
-        <!-- Play button for mobile with play icon -->
-        <button class="play-button" id="playButton">
-            <i class="fas fa-play"></i>
-        </button>
+        <div class="footer">
+            <!-- Footer with affirmation and audio -->
+            <audio id="audioPlayer" muted autoplay>
+                <source id="audioSource" src="https://github.com/byconstellate/digitalnomad/blob/main/magnet.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            <div id="affirmation" class="affirmation">I have so much money in my bank account</div>
+        </div>
     </div>
 
     <script>
-        // Array of objects with affirmations and their corresponding audio URLs
         const affirmations = [
-            { text: "I have so much money in my bank account", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/bankaccount.mp3" },
+            { text: "I have so much money in my bank account", url: "https://github.com/byconstellate/digitalnomad/blob/main/magnet.mp3" },
             { text: "I am so rich", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/healthy.mp3" },
             { text: "God’s Plan is for me to be a successful digital nomad", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/godplan.mp3" },
             { text: "I love being a digital nomad", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad1.mp3" },
@@ -118,17 +118,6 @@
         ];
 
         let currentIndex = 0;
-
-        // Function to shuffle the array randomly
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]]; // Swap elements
-            }
-        }
-
-        // Shuffle the affirmations array before starting
-        shuffleArray(affirmations);
 
         // Function to play the current affirmation
         function playCurrentAffirmation() {
@@ -144,9 +133,6 @@
                 affirmationElement.textContent = selectedAffirmation.text;
                 audioSource.src = selectedAffirmation.url;
 
-                // Show the affirmation
-                affirmationElement.classList.add('visible');
-
                 // Play the audio and handle transitions
                 audioPlayer.load();
                 audioPlayer.play().then(() => {
@@ -155,10 +141,8 @@
                     console.error('Playback error:', error);
                 });
 
-                // Hide affirmation when audio ends and play the next affirmation
+                // Move to the next affirmation when the audio ends
                 audioPlayer.onended = function() {
-                    affirmationElement.classList.remove('visible'); // Hide affirmation
-                    // Move to the next track or loop
                     currentIndex = (currentIndex + 1) % affirmations.length;
                     playCurrentAffirmation();
                 };
@@ -167,19 +151,9 @@
             }
         }
 
-        // Event listener for the play button on mobile
-        document.getElementById('playButton').addEventListener('click', function() {
-            document.getElementById('playButton').style.display = 'none'; // Hide play button
-            document.getElementById('contentSection').style.display = 'block'; // Show image content
-            playCurrentAffirmation(); // Start the affirmations
-        });
-
-        // Autoplay affirmations on larger screens
-        if (window.innerWidth >= 769) {
-            window.onload = function() {
-                playCurrentAffirmation();
-            };
-        }
+        window.onload = function() {
+            playCurrentAffirmation();
+        };
     </script>
 </body>
 </html>
