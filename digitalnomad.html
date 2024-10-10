@@ -16,7 +16,7 @@
             flex-direction: column;
         }
 
-        /* Image container */
+        /* Container for the image and footer */
         .container {
             flex-grow: 1;
             display: flex;
@@ -57,11 +57,11 @@
             display: none;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             width: 100vw;
+            height: 100px;
         }
 
-        /* Show the cyan background only on mobile */
+        /* Show the cyan background and text centered only on mobile */
         @media only screen and (max-width: 768px) {
             body {
                 background-color: #00FFFF;
@@ -72,10 +72,16 @@
                 justify-content: center;
                 align-items: center;
                 font-size: 80px;
+                margin-top: 20px; /* Add space before the image */
             }
 
             .scrollable-content {
-                display: none;
+                display: none; /* Hide image until play button is clicked */
+            }
+
+            /* Center the text on mobile */
+            .affirmation {
+                text-align: center;
             }
         }
 
@@ -92,9 +98,14 @@
     </style>
 </head>
 <body>
+    <!-- Play button will be visible on mobile, above the image -->
+    <button class="play-button" id="playButton">
+        <i class="fas fa-play"></i>
+    </button>
+
     <div class="container">
-        <div class="image-container">
-            <!-- Image that will always be displayed -->
+        <div class="image-container" id="contentSection">
+            <!-- Image that will always be displayed after play button is clicked -->
             <img src="https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp" alt="Digital Nomad Image">
         </div>
         <div class="footer">
@@ -104,10 +115,6 @@
                 Your browser does not support the audio element.
             </audio>
             <div id="affirmation" class="affirmation">I am a sales magnet</div>
-            <!-- Play button for mobile with play icon -->
-            <button class="play-button" id="playButton">
-                <i class="fas fa-play"></i>
-            </button>
         </div>
     </div>
 
@@ -121,7 +128,7 @@
             { text: "I make sales every day", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/imakemoneyeveryday.mp3" },
             { text: "I instantly made money online", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/moneyonline.mp3" },
             { text: "I instantly take steps to become a successful digital nomad", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomadaction.mp3" },
-            { text: "I am a sales magnet", url: "https://github.com/byconstellate/digitalnomad/blob/main/magnet.mp3" } // New affirmation
+            { text: "I am a sales magnet", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/magnet.mp3" } // New affirmation
         ];
 
         let currentIndex = 0;
@@ -179,6 +186,7 @@
         // Event listener for play button on mobile
         document.getElementById('playButton').addEventListener('click', function() {
             document.getElementById('playButton').style.display = 'none'; // Hide play button
+            document.getElementById('contentSection').style.display = 'block'; // Show image content
             playCurrentAffirmation(); // Start affirmations
         });
     </script>
