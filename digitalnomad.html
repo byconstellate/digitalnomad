@@ -8,20 +8,22 @@
         html, body {
             height: 100%; /* Ensure full height */
             margin: 0; /* Remove default margin */
+            overflow: hidden; /* Prevent scrolling on the body */
         }
         body {
             display: flex;
             flex-direction: column; /* Arrange elements in a column */
         }
         .background {
-            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center; /* Centered background */
+            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center top; /* Centered background */
             background-size: cover; /* Ensure the image covers the entire width */
             height: 100vh; /* Full viewport height */
             overflow: auto; /* Allow scrolling */
+            position: relative; /* Position relative for footer */
         }
         .footer {
             background-color: #00FFFF; /* Cyan color */
-            color: white; /* Text color */
+            color: black; /* Text color */
             text-align: center; /* Center the text */
             font-size: 48px; /* Adjusted font size for the affirmation */
             padding: 20px; /* Padding for the footer */
@@ -34,18 +36,18 @@
         .affirmation {
             font-family: Courier, monospace;
             font-size: 72px; /* Adjusted size for affirmation text */
-            color: white; /* Change text color to white */
+            color: black; /* Change text color to black */
             margin: 0; /* Remove margin */
             padding: 0; /* Remove padding */
         }
-        .affirmation.visible {
-            display: block; /* Show the affirmation text when visible */
+        #affirmationText {
+            display: none; /* Initially hide the affirmation text */
         }
     </style>
 </head>
 <body>
     <div class="background">
-        <div id="affirmation" class="affirmation">I love being a digital nomad</div>
+        <div id="affirmationText" class="affirmation">I love being a digital nomad</div>
     </div>
     
     <div class="footer">
@@ -111,7 +113,7 @@
         function playCurrentAffirmation() {
             const audioPlayer = document.getElementById('audioPlayer');
             const audioSource = document.getElementById('audioSource');
-            const affirmationElement = document.getElementById('affirmation');
+            const affirmationElement = document.getElementById('affirmationText');
 
             if (affirmations.length === 0) {
                 console.error('No affirmations available to play.');
@@ -127,7 +129,7 @@
                 audioSource.src = selectedAffirmation.url;
 
                 // Show the affirmation
-                affirmationElement.classList.add('visible');
+                affirmationElement.style.display = 'block'; // Make it visible
 
                 // Play the audio and handle transitions
                 audioPlayer.load();
@@ -139,7 +141,7 @@
 
                 // Hide affirmation when audio ends and play the next affirmation
                 audioPlayer.onended = function() {
-                    affirmationElement.classList.remove('visible'); // Hide affirmation
+                    affirmationElement.style.display = 'none'; // Hide affirmation
                     // Move to the next track or loop
                     currentIndex = (currentIndex + 1) % affirmations.length;
                     playCurrentAffirmation();
