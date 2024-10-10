@@ -12,13 +12,15 @@
         body {
             display: flex;
             flex-direction: column; /* Arrange elements in a column */
+        }
+        .scrollable-content {
+            flex: 1; /* Take up remaining space */
             overflow-y: auto; /* Allow vertical scrolling */
         }
-        .background {
-            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center; /* Centered background */
-            background-size: cover; /* Ensure the image covers the entire width and height */
-            flex: 1; /* Allow this section to grow and shrink */
-            overflow-y: auto; /* Make the background scrollable */
+        .image-container img {
+            display: block;
+            width: 100%; /* Make image span the full width */
+            height: auto; /* Ensure the image maintains its aspect ratio */
         }
         .footer {
             position: fixed; /* Fix the footer at the bottom */
@@ -44,7 +46,11 @@
     </style>
 </head>
 <body>
-    <div class="background"></div> <!-- Background image section -->
+    <div class="scrollable-content">
+        <div class="image-container">
+            <img src="https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp" alt="Digital Nomad Image"> <!-- Image that will scroll -->
+        </div>
+    </div>
     
     <div class="footer">
         <audio id="audioPlayer" muted autoplay>
