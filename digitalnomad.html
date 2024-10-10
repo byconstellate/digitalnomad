@@ -16,10 +16,9 @@
             position: relative; /* For positioning the footer */
         }
         .background {
-            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center; /* Centered background */
+            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center top; /* Centered background */
             background-size: cover; /* Ensure the image covers the entire width */
-            height: calc(100vh - 150px); /* Full height minus footer height */
-            flex-shrink: 0; /* Prevent shrinking */
+            flex-grow: 1; /* Allow the background to grow and fill available space */
         }
         .footer {
             background-color: #00FFFF; /* Cyan color */
