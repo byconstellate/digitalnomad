@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Nomad Experience</title>
     <style>
+        html, body {
+            height: 100%; /* Ensure the full height of the viewport is used */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            overflow: hidden; /* Prevent scrolling */
+        }
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            height: 100vh; /* Full viewport height */
+            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center fixed; /* Fixed background */
+            background-size: cover; /* Make sure the image covers the entire height */
             display: flex;
             align-items: center;
             justify-content: center;
-            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center fixed; /* Fixed background */
-            background-size: cover; /* Make sure the image covers the entire height */
             flex-direction: column; /* Arrange elements in a column */
             position: relative; /* For positioning the affirmation text */
         }
@@ -39,13 +42,12 @@
     </style>
 </head>
 <body>
-    <audio id="audioPlayer" muted>
+    <audio id="audioPlayer" muted autoplay>
         <source id="audioSource" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
     <div id="affirmation" class="affirmation"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     <script>
         // Array of objects with affirmations and their corresponding audio URLs
         const affirmations = [
@@ -74,8 +76,8 @@
                 url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/moneyonline.mp3"
             },
             {
-                text: "I am a sales magnet", // New affirmation
-                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/magnet.mp3" // New MP3 link
+                text: "I always instantly take steps to become a successful digital nomad", // New affirmation
+                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomadaction.mp3" // Link to the new MP3
             }
         ];
 
@@ -135,8 +137,10 @@
             }
         }
 
-        // Start playing the first affirmation after a short delay to ensure autoplay works
-        setTimeout(playCurrentAffirmation, 100); // Delay of 100 milliseconds
+        // Start playing the first affirmation automatically
+        window.onload = function() {
+            playCurrentAffirmation();
+        };
     </script>
 </body>
 </html>
