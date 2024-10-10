@@ -8,17 +8,18 @@
         html, body {
             height: 100%; /* Ensure full height */
             margin: 0; /* Remove default margin */
+            overflow-x: hidden; /* Hide horizontal overflow */
         }
         body {
             display: flex;
             flex-direction: column; /* Arrange elements in a column */
             position: relative; /* For positioning the footer */
-            overflow: auto; /* Enable scrolling */
         }
         .background {
-            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center; /* Fixed background */
-            background-size: cover; /* Ensure the image covers the top part */
+            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center top; /* Fixed background at the top */
+            background-size: contain; /* Ensure the image fits within the height */
             height: 100vh; /* Full height for the image section */
+            flex-shrink: 0; /* Prevent shrinking */
         }
         .footer {
             background-color: #00FFFF; /* Cyan color */
