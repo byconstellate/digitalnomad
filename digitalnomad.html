@@ -58,7 +58,7 @@
             justify-content: center;
             align-items: center;
             width: 100vw;
-            height: 100px;
+            height: 100vh; /* Take up entire viewport */
         }
 
         /* Show the cyan background and text centered only on mobile */
@@ -67,12 +67,12 @@
                 background-color: #00FFFF;
             }
 
+            /* Full-screen play button on mobile */
             .play-button {
-                display: flex;
+                display: flex; /* Show full-screen play button */
                 justify-content: center;
                 align-items: center;
                 font-size: 80px;
-                margin-top: 20px; /* Add space before the image */
             }
 
             .scrollable-content {
@@ -98,13 +98,13 @@
     </style>
 </head>
 <body>
-    <!-- Play button will be visible on mobile, above the image -->
+    <!-- Play button will be full-screen on mobile, above the image -->
     <button class="play-button" id="playButton">
         <i class="fas fa-play"></i>
     </button>
 
-    <div class="container">
-        <div class="image-container" id="contentSection">
+    <div class="container" id="contentSection">
+        <div class="image-container">
             <!-- Image that will always be displayed after play button is clicked -->
             <img src="https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp" alt="Digital Nomad Image">
         </div>
