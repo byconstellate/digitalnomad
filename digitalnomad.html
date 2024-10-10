@@ -8,7 +8,6 @@
         html, body {
             height: 100%; /* Ensure full height */
             margin: 0; /* Remove default margin */
-            overflow: hidden; /* Prevent scrolling to avoid issues */
         }
         body {
             display: flex;
@@ -16,8 +15,9 @@
         }
         .background {
             background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center; /* Centered background */
-            background-size: cover; /* Ensure the image covers the entire width and height */
+            background-size: cover; /* Ensure the image covers the entire width */
             height: 100vh; /* Full viewport height */
+            overflow: auto; /* Allow scrolling */
         }
         .footer {
             background-color: #00FFFF; /* Cyan color */
@@ -26,6 +26,10 @@
             font-size: 48px; /* Adjusted font size for the affirmation */
             padding: 20px; /* Padding for the footer */
             box-sizing: border-box; /* Include padding in width calculation */
+            position: fixed; /* Fix position at the bottom */
+            bottom: 0; /* Align to the bottom */
+            left: 0; /* Align to the left */
+            right: 0; /* Align to the right */
         }
         .affirmation {
             font-family: Courier, monospace;
@@ -40,14 +44,16 @@
     </style>
 </head>
 <body>
-    <div class="background"></div> <!-- Background image section -->
+    <div class="background">
+        <div id="affirmation" class="affirmation">I love being a digital nomad</div>
+    </div>
     
     <div class="footer">
         <audio id="audioPlayer" muted autoplay>
             <source id="audioSource" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
-        <div id="affirmation" class="affirmation">I love being a digital nomad</div>
+        <div id="affirmationFooter" class="affirmation">I instantly take steps to become a successful digital nomad</div>
     </div>
 
     <script>
@@ -76,6 +82,10 @@
             {
                 text: "I instantly made money online",
                 url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/moneyonline.mp3"
+            },
+            {
+                text: "I am a sales magnet",
+                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/magnet.mp3"
             },
             {
                 text: "I instantly take steps to become a successful digital nomad",
