@@ -43,6 +43,32 @@
         .affirmation.visible {
             display: block; /* Show the affirmation text when visible */
         }
+        
+        /* Style for the play button */
+        .play-button {
+            background-color: #00FFFF; /* Button color */
+            color: white; /* Text color */
+            border: none; /* Remove border */
+            padding: 10px 20px; /* Button padding */
+            font-size: 24px; /* Button font size */
+            cursor: pointer; /* Pointer on hover */
+            display: none; /* Hidden by default */
+            margin-top: 20px; /* Add some space above the button */
+        }
+
+        /* Show the play button only on mobile (width <= 768px) */
+        @media only screen and (max-width: 768px) {
+            .play-button {
+                display: block; /* Show the button on mobile */
+            }
+        }
+
+        /* Hide the play button on larger screens (autoplay enabled) */
+        @media only screen and (min-width: 769px) {
+            .play-button {
+                display: none; /* Hide the button on desktop */
+            }
+        }
     </style>
 </head>
 <body>
@@ -58,6 +84,7 @@
             Your browser does not support the audio element.
         </audio>
         <div id="affirmation" class="affirmation">I love being a digital nomad</div>
+        <button class="play-button" id="playButton">Play Affirmations</button> <!-- Play button for mobile -->
     </div>
 
     <script>
@@ -111,10 +138,17 @@
             }
         }
 
-        // Autoplay affirmation on page load
-        window.onload = function() {
-            playCurrentAffirmation();
-        };
+        // Play affirmations automatically on larger screens
+        if (window.innerWidth >= 769) {
+            window.onload = function() {
+                playCurrentAffirmation();
+            };
+        }
+
+        // Add event listener for the play button on mobile
+        document.getElementById('playButton').addEventListener('click', function() {
+            playCurrentAffirmation(); // Call the function to play affirmations
+        });
     </script>
 </body>
 </html>
