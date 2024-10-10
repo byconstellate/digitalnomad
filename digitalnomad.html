@@ -5,97 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Nomad Experience</title>
     <style>
-        /* General reset */
-        * {
+        /* General Reset */
+        html, body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Full height for the layout */
-        html, body {
             height: 100%;
             width: 100%;
-            overflow: hidden; /* Prevent scrolling */
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
-        /* Main body layout */
+        /* Main Layout */
         body {
             display: flex;
             flex-direction: column;
-            background-color: #fff;
         }
 
-        /* Image takes full space */
+        /* Image Section */
+        .scrollable-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            background-color: #ffffff;
+        }
+
         .image-container img {
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            object-fit: cover; /* Ensures the image covers the area */
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        /* Footer for desktop/tablets */
+        /* Footer */
         .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
             background-color: #00FFFF;
             color: white;
             text-align: center;
-            font-size: 24px;
-            padding: 10px;
-            z-index: 10;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
         }
 
-        /* Affirmation styling */
         .affirmation {
             font-family: Courier, monospace;
-            font-size: 32px;
+            font-size: 24px;
             color: white;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Hide footer and affirmation on mobile */
-        @media (max-width: 768px) {
-            .footer {
-                display: none; /* Hide the footer on mobile */
-            }
-
-            html, body {
-                overflow: hidden; /* Disable scrolling on mobile */
-            }
-        }
-
-        /* Larger text for larger screens */
+        /* Mobile-Friendly Media Queries */
         @media (min-width: 768px) {
             .affirmation {
-                font-size: 48px;
+                font-size: 32px; /* Larger text on larger screens */
             }
 
             .footer {
                 font-size: 32px;
             }
         }
-
-        @media (min-width: 1024px) {
-            .affirmation {
-                font-size: 64px;
-            }
-
-            .footer {
-                font-size: 48px;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Fullscreen Image Area -->
-    <div class="image-container">
-        <img src="https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp" alt="Digital Nomad Image">
+    <div class="scrollable-content">
+        <div class="image-container">
+            <img src="https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp" alt="Digital Nomad Image">
+        </div>
     </div>
 
-    <!-- Footer with Affirmation (hidden on mobile) -->
     <div class="footer">
-        <audio id="audioPlayer" autoplay muted>
+        <audio id="audioPlayer" muted autoplay>
             <source id="audioSource" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
@@ -104,81 +83,45 @@
 
     <script>
         const affirmations = [
-            {
-                text: "I have so much money in my bank account",
-                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/bankaccount.mp3"
-            },
-            {
-                text: "I am so rich",
-                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/healthy.mp3"
-            },
-            {
-                text: "God’s Plan is for me to be a successful digital nomad",
-                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/godplan.mp3"
-            },
-            {
-                text: "I love being a digital nomad",
-                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad1.mp3"
-            },
-            {
-                text: "I make sales every day",
-                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/imakemoneyeveryday.mp3"
-            },
-            {
-                text: "I instantly made money online",
-                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/moneyonline.mp3"
-            },
-            {
-                text: "I instantly take steps to become a successful digital nomad",
-                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomadaction.mp3"
-            },
-            {
-                text: "I am a sales magnet",
-                url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/magnet.mp3"
-            }
+            { text: "I have so much money in my bank account", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/bankaccount.mp3" },
+            { text: "I am so rich", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/healthy.mp3" },
+            { text: "God’s Plan is for me to be a successful digital nomad", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/godplan.mp3" },
+            { text: "I love being a digital nomad", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad1.mp3" },
+            { text: "I make sales every day", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/imakemoneyeveryday.mp3" },
+            { text: "I instantly made money online", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/moneyonline.mp3" },
+            { text: "I instantly take steps to become a successful digital nomad", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomadaction.mp3" },
+            { text: "I am a sales magnet", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/magnet.mp3" }
         ];
 
-        // Shuffle affirmations
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        shuffleArray(affirmations);
         let currentIndex = 0;
 
-        // Play the current affirmation
         function playCurrentAffirmation() {
             const audioPlayer = document.getElementById('audioPlayer');
             const audioSource = document.getElementById('audioSource');
             const affirmationElement = document.getElementById('affirmation');
 
-            const selectedAffirmation = affirmations[currentIndex];
-
-            if (selectedAffirmation) {
-                // Update affirmation text and audio source
-                affirmationElement.textContent = selectedAffirmation.text;
-                audioSource.src = selectedAffirmation.url;
-
-                // Load and play audio
-                audioPlayer.load();
-                audioPlayer.play().then(() => {
-                    audioPlayer.muted = false;
-                }).catch(error => {
-                    console.error('Audio playback error:', error);
-                });
-
-                // Move to next affirmation after audio ends
-                audioPlayer.onended = function() {
-                    currentIndex = (currentIndex + 1) % affirmations.length;
-                    playCurrentAffirmation();
-                };
+            if (affirmations.length === 0) {
+                console.error('No affirmations available.');
+                return;
             }
+
+            const selectedAffirmation = affirmations[currentIndex];
+            affirmationElement.textContent = selectedAffirmation.text;
+            audioSource.src = selectedAffirmation.url;
+
+            audioPlayer.load();
+            audioPlayer.play().then(() => {
+                audioPlayer.muted = false;
+            }).catch((error) => {
+                console.error('Playback error:', error);
+            });
+
+            audioPlayer.onended = function() {
+                currentIndex = (currentIndex + 1) % affirmations.length;
+                playCurrentAffirmation();
+            };
         }
 
-        // Start playing affirmations on page load
         window.onload = function() {
             playCurrentAffirmation();
         };
