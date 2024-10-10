@@ -8,7 +8,7 @@
         html, body {
             height: 100%; /* Ensure full height */
             margin: 0; /* Remove default margin */
-            overflow-x: hidden; /* Hide horizontal overflow */
+            overflow-y: auto; /* Allow vertical scrolling */
         }
         body {
             display: flex;
@@ -16,8 +16,8 @@
             position: relative; /* For positioning the footer */
         }
         .background {
-            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center top; /* Fixed background at the top */
-            background-size: cover; /* Ensure the image covers the entire width */
+            background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center; /* Centered background */
+            background-size: contain; /* Ensure the image is fully visible */
             height: 100vh; /* Full height for the image section */
             flex-shrink: 0; /* Prevent shrinking */
         }
