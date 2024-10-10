@@ -13,11 +13,12 @@
         body {
             display: flex;
             flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
         }
 
         .scrollable-content {
-            flex: 1;
-            overflow-y: auto;
+            flex-grow: 1; /* Allow this section to grow to fill available space */
+            overflow-y: auto; /* Enable scrolling if content overflows */
         }
 
         .image-container img {
@@ -27,9 +28,6 @@
         }
 
         .footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
             background-color: #00FFFF;
             color: white;
             text-align: center;
@@ -44,10 +42,6 @@
             color: white;
             margin: 0;
             padding: 0;
-        }
-
-        .affirmation.visible {
-            display: block;
         }
 
         /* Media queries for mobile responsiveness */
