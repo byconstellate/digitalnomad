@@ -6,49 +6,78 @@
     <title>Digital Nomad Experience</title>
     <style>
         html, body {
-            height: 100%; /* Ensure full height */
-            margin: 0; /* Remove default margin */
+            height: 100%;
+            margin: 0;
         }
+
         body {
             display: flex;
-            flex-direction: column; /* Arrange elements in a column */
+            flex-direction: column;
         }
+
         .scrollable-content {
-            flex: 1; /* Take up remaining space */
-            overflow-y: auto; /* Allow vertical scrolling */
+            flex: 1;
+            overflow-y: auto;
         }
+
         .image-container img {
             display: block;
-            width: 100%; /* Make image span the full width */
-            height: auto; /* Ensure the image maintains its aspect ratio */
+            width: 100%;
+            height: auto;
         }
+
         .footer {
-            position: fixed; /* Fix the footer at the bottom */
+            position: fixed;
             bottom: 0;
-            width: 100%; /* Ensure the footer takes the full width */
-            background-color: #00FFFF; /* Cyan color */
-            color: white; /* Text color */
-            text-align: center; /* Center the text */
-            font-size: 48px; /* Adjusted font size for the affirmation */
-            padding: 20px; /* Padding for the footer */
-            box-sizing: border-box; /* Include padding in width calculation */
+            width: 100%;
+            background-color: #00FFFF;
+            color: white;
+            text-align: center;
+            font-size: 48px;
+            padding: 20px;
+            box-sizing: border-box;
         }
+
         .affirmation {
             font-family: Courier, monospace;
-            font-size: 72px; /* Adjusted size for affirmation text */
-            color: white; /* Change text color to white */
-            margin: 0; /* Remove margin */
-            padding: 0; /* Remove padding */
+            font-size: 72px;
+            color: white;
+            margin: 0;
+            padding: 0;
         }
+
         .affirmation.visible {
-            display: block; /* Show the affirmation text when visible */
+            display: block;
+        }
+
+        /* Media queries for mobile responsiveness */
+        @media (max-width: 768px) {
+            .affirmation {
+                font-size: 48px; /* Smaller font for tablets and small screens */
+            }
+
+            .footer {
+                font-size: 32px; /* Adjust footer text size for smaller screens */
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .affirmation {
+                font-size: 36px; /* Further reduce font size for mobile */
+            }
+
+            .footer {
+                font-size: 28px; /* Smaller footer text on mobile */
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="scrollable-content">
         <div class="image-container">
-            <img src="https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp" alt="Digital Nomad Image"> <!-- Image that will scroll -->
+            <img src="https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp" alt="Digital Nomad Image">
         </div>
     </div>
     
@@ -61,7 +90,6 @@
     </div>
 
     <script>
-        // Array of objects with affirmations and their corresponding audio URLs
         const affirmations = [
             {
                 text: "I have so much money in my bank account",
@@ -97,7 +125,6 @@
             }
         ];
 
-        // Shuffle the affirmations array
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -105,13 +132,9 @@
             }
         }
 
-        // Shuffle the affirmations to create a random playlist
         shuffleArray(affirmations);
-
-        // Track index for current playing affirmation
         let currentIndex = 0;
 
-        // Function to play the current affirmation
         function playCurrentAffirmation() {
             const audioPlayer = document.getElementById('audioPlayer');
             const audioSource = document.getElementById('audioSource');
@@ -122,29 +145,22 @@
                 return;
             }
 
-            // Get the current affirmation
             const selectedAffirmation = affirmations[currentIndex];
 
             if (selectedAffirmation) {
-                // Set the affirmation text and audio URL
                 affirmationElement.textContent = selectedAffirmation.text;
                 audioSource.src = selectedAffirmation.url;
-
-                // Show the affirmation
                 affirmationElement.classList.add('visible');
 
-                // Play the audio and handle transitions
                 audioPlayer.load();
                 audioPlayer.play().then(() => {
-                    audioPlayer.muted = false; // Unmute after loading
+                    audioPlayer.muted = false;
                 }).catch(error => {
                     console.error('Playback error:', error);
                 });
 
-                // Hide affirmation when audio ends and play the next affirmation
                 audioPlayer.onended = function() {
-                    affirmationElement.classList.remove('visible'); // Hide affirmation
-                    // Move to the next track or loop
+                    affirmationElement.classList.remove('visible');
                     currentIndex = (currentIndex + 1) % affirmations.length;
                     playCurrentAffirmation();
                 };
@@ -153,7 +169,6 @@
             }
         }
 
-        // Start playing the first affirmation automatically
         window.onload = function() {
             playCurrentAffirmation();
         };
