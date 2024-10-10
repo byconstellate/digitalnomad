@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Nomad Experience</title>
+    <!-- Link to Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         html, body {
             height: 100%; /* Ensure full height */
@@ -50,23 +52,23 @@
             background-color: #00FFFF; /* Button color */
             color: white; /* Text color */
             border: none; /* Remove border */
-            padding: 20px 40px; /* Button padding */
-            font-size: 36px; /* Button font size */
+            font-size: 80px; /* Button font size */
             cursor: pointer; /* Pointer on hover */
             display: none; /* Hidden by default */
             justify-content: center;
             align-items: center;
+            height: 100vh; /* Full screen button */
+            width: 100vw; /* Full width for button */
+            text-align: center;
         }
 
         /* Show the play button only on mobile (width <= 768px) */
         @media only screen and (max-width: 768px) {
             .play-button {
                 display: flex; /* Show the button on mobile */
-                height: 100vh; /* Full height for button */
-                width: 100vw; /* Full width for button */
                 justify-content: center;
                 align-items: center;
-                font-size: 36px;
+                font-size: 80px; /* Adjusted icon size for mobile */
             }
             .scrollable-content {
                 display: none; /* Hide the image container on mobile until played */
@@ -97,7 +99,10 @@
             Your browser does not support the audio element.
         </audio>
         <div id="affirmation" class="affirmation">I love being a digital nomad</div>
-        <button class="play-button" id="playButton">Play Affirmations</button> <!-- Play button for mobile -->
+        <!-- Play button for mobile with play icon -->
+        <button class="play-button" id="playButton">
+            <i class="fas fa-play"></i>
+        </button>
     </div>
 
     <script>
