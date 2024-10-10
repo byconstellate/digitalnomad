@@ -22,15 +22,30 @@
             height: 80%; /* Height for the image section */
         }
         .footer {
-            background-color: #00bcd4; /* Cyan color */
+            background-color: #00FFFF; /* Cyan color */
             color: white; /* Text color */
             text-align: center; /* Center the text */
-            font-size: 36px; /* Font size for the affirmation */
-            padding: 20px; /* Padding for the footer */
-            position: relative; /* For positioning */
+            font-size: 64px; /* Increased font size for the affirmation */
+            padding: 40px; /* Padding for the footer */
+            position: absolute; /* Fix the footer at the bottom */
+            bottom: 0; /* Align to the bottom */
+            width: 100%; /* Full width */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
         #audioPlayer {
             display: none; /* Hide the default audio player */
+        }
+        .affirmation {
+            font-family: Courier, monospace;
+            font-size: 120px; /* Size for affirmation text */
+            color: white; /* Change text color to white */
+            text-align: center;
+            position: relative; /* Positioned relative to the footer */
+            margin: 0; /* Remove margin */
+            padding: 0; /* Remove padding */
+        }
+        .affirmation.visible {
+            display: block; /* Show the affirmation text when visible */
         }
     </style>
 </head>
@@ -73,7 +88,7 @@
                 url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/moneyonline.mp3"
             },
             {
-                text: "I always instantly take steps to become a successful digital nomad", // New affirmation
+                text: "I instantly take steps to become a successful digital nomad", // Updated affirmation
                 url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomadaction.mp3" // Link to the new MP3
             }
         ];
