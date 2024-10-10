@@ -5,65 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Nomad Experience</title>
     <style>
+        /* General Reset */
         html, body {
-            height: 100%;
             margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow-x: hidden; /* Prevent horizontal overflow */
         }
 
+        /* Main Layout */
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
+            justify-content: space-between; /* Push the footer to the bottom */
+            background-color: #fff;
         }
 
         .scrollable-content {
-            flex-grow: 1; /* Allow this section to grow to fill available space */
-            overflow-y: auto; /* Enable scrolling if content overflows */
+            flex-grow: 1; /* Make content take up the remaining space */
+            overflow-y: auto;
         }
 
         .image-container img {
-            display: block;
-            width: 100%;
-            height: auto;
+            width: 100%; /* Ensure the image takes up the full width */
+            height: auto; /* Maintain aspect ratio */
         }
 
+        /* Footer */
         .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             background-color: #00FFFF;
             color: white;
             text-align: center;
-            font-size: 48px;
-            padding: 20px;
+            font-size: 24px; /* Smaller default size for mobile compatibility */
+            padding: 15px;
             box-sizing: border-box;
         }
 
         .affirmation {
             font-family: Courier, monospace;
-            font-size: 72px;
+            font-size: 32px; /* Adjustable for mobile */
             color: white;
             margin: 0;
             padding: 0;
         }
 
-        /* Media queries for mobile responsiveness */
-        @media (max-width: 768px) {
+        /* Media Queries for smaller screens */
+        @media (min-width: 769px) {
             .affirmation {
-                font-size: 48px; /* Smaller font for tablets and small screens */
+                font-size: 48px; /* Larger text on tablets and up */
             }
 
             .footer {
-                font-size: 32px; /* Adjust footer text size for smaller screens */
-                padding: 15px;
+                font-size: 32px; /* Larger footer text for larger screens */
             }
         }
 
-        @media (max-width: 480px) {
+        @media (min-width: 1024px) {
             .affirmation {
-                font-size: 36px; /* Further reduce font size for mobile */
+                font-size: 64px; /* Even larger for desktop */
             }
 
             .footer {
-                font-size: 28px; /* Smaller footer text on mobile */
-                padding: 10px;
+                font-size: 48px;
             }
         }
     </style>
