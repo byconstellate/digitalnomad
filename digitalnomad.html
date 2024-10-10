@@ -54,19 +54,18 @@
             font-size: 36px; /* Button font size */
             cursor: pointer; /* Pointer on hover */
             display: none; /* Hidden by default */
-            margin-top: 20px; /* Add some space above the button */
+            justify-content: center;
+            align-items: center;
         }
 
         /* Show the play button only on mobile (width <= 768px) */
         @media only screen and (max-width: 768px) {
             .play-button {
-                display: block; /* Show the button on mobile */
-                width: 100%;
-                height: 100%;
-                display: flex;
+                display: flex; /* Show the button on mobile */
+                height: 100vh; /* Full height for button */
+                width: 100vw; /* Full width for button */
                 justify-content: center;
                 align-items: center;
-                background-color: #00FFFF;
                 font-size: 36px;
             }
             .scrollable-content {
