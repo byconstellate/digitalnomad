@@ -12,7 +12,6 @@
             height: 100%;
             width: 100%;
             box-sizing: border-box;
-            overflow: hidden;
         }
 
         /* Main Layout */
@@ -24,8 +23,9 @@
         /* Image Section */
         .scrollable-content {
             flex-grow: 1;
-            overflow-y: auto;
+            overflow-y: auto; /* Allow scrolling */
             background-color: #ffffff;
+            padding-bottom: 80px; /* Space for footer */
         }
 
         .image-container img {
@@ -40,7 +40,7 @@
             color: white;
             text-align: center;
             padding: 20px;
-            position: fixed;
+            position: relative; /* Change to relative */
             bottom: 0;
             left: 0;
             right: 0;
