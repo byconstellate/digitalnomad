@@ -19,7 +19,6 @@
             color: #fd5dd5;
         }
 
-        /* Container Styles */
         .create-account-container {
             display: flex;
             flex-direction: column;
@@ -54,15 +53,9 @@
             font-size: 16px;
         }
 
-        /* Change border color to pink on focus */
         form input:focus {
             outline: none;
             border-bottom: 1px solid #f038de;
-        }
-
-        form input::placeholder {
-            color: #ccc;
-            opacity: 1;
         }
 
         button {
@@ -76,7 +69,6 @@
             font-size: 16px;
             border-radius: 25px;
             margin-top: 20px;
-            transition: background-color 0.3s;
         }
 
         .create-message {
@@ -93,10 +85,8 @@
             font-weight: bold;
             font-size: 16px;
             margin-top: 20px;
-            transition: color 0.3s;
         }
     </style>
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
@@ -156,8 +146,8 @@
                             email: email
                         }).then(() => {
                             document.getElementById('create-message').innerText = 'Account created successfully!';
-                            // Redirect to the digitalnomad.html on GitHub Pages
-                            window.location.href = 'https://byconstellate.github.io/digitalnomad/digitalnomad.html';
+                            // Redirect to local digitalnomad.html
+                            window.location.href = 'digitalnomad.html';
                         }).catch((error) => {
                             document.getElementById('create-message').innerText = 'Error saving user details: ' + error.message;
                         });
@@ -182,7 +172,7 @@
                                             email: email
                                         }).then(() => {
                                             document.getElementById('create-message').innerText = 'Account created successfully!';
-                                            window.location.href = 'https://byconstellate.github.io/digitalnomad/digitalnomad.html';
+                                            window.location.href = 'digitalnomad.html';
                                         }).catch((error) => {
                                             document.getElementById('create-message').innerText = 'Error saving user details: ' + error.message;
                                         });
