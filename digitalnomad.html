@@ -17,8 +17,8 @@
         }
         .background {
             background: url('https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp') no-repeat center center; /* Centered background */
-            background-size: cover; /* Ensure the image covers the entire width and height */
-            height: 100vh; /* Full height for the image section */
+            background-size: cover; /* Ensure the image covers the entire width */
+            height: calc(100vh - 150px); /* Full height minus footer height */
             flex-shrink: 0; /* Prevent shrinking */
         }
         .footer {
@@ -28,16 +28,11 @@
             font-size: 48px; /* Adjusted font size for the affirmation */
             padding: 20px; /* Padding for the footer */
             box-sizing: border-box; /* Include padding in width calculation */
-            position: relative; /* Positioned relative to the body */
-        }
-        #audioPlayer {
-            display: none; /* Hide the default audio player */
         }
         .affirmation {
             font-family: Courier, monospace;
             font-size: 72px; /* Adjusted size for affirmation text */
             color: white; /* Change text color to white */
-            text-align: center;
             margin: 0; /* Remove margin */
             padding: 0; /* Remove padding */
         }
