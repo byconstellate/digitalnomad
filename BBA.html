@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .quiz-container {
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+    }
+    h1 {
+      color: fuchsia;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    h2 {
+      color: white;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    select {
+      font-size: 18px;
+      padding: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      color: white;
+      background-color: fuchsia;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff66b2;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Find Your Perfect Course</h1>
+    <h2>Answer the questions to get a recommendation</h2>
+
+    <div class="question">
+      <label for="coaching">How much coaching do you require?</label>
+      <select id="coaching">
+        <option value="low">Minimal</option>
+        <option value="medium">Moderate</option>
+        <option value="high">Intensive</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label for="budget">What's your budget?</label>
+      <select id="budget">
+        <option value="low">Less than 0-100</option>
+        <option value="medium">100-1000</option>
+        <option value="high">1000+</option>
+      </select>
+    </div>
+
+    <div class="question">
+      <label for="services">Do you desire done-for-you content creation services?</label>
+      <select id="services">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </div>
+
+    <button onclick="recommendCourse()">Submit</button>
+    <p id="result"></p>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js"></script>
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDyo_7FRkKgNDPGfmV38hMBTvNM-bCZcR0",
+      authDomain: "constellate-13642408.firebaseapp.com",
+      projectId: "constellate-13642408",
+      storageBucket: "constellate-13642408.appspot.com",
+      messagingSenderId: "1067431241975",
+      appId: "1:1067431241975:web:ed7781dca93ca960d8cbf2"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function recommendCourse() {
+      const coaching = document.getElementById("coaching").value;
+      const budget = document.getElementById("budget").value;
+      const services = document.getElementById("services").value;
+
+      let recommendation = '';
+
+      // Simple logic for recommending course
+      if (coaching === 'high' && budget === 'high' && services === 'yes') {
+        recommendation = 'VIP';
+      } else if (coaching === 'medium' && budget === 'medium') {
+        recommendation = 'Premium';
+      } else {
+        recommendation = 'Self-Study';
+      }
+
+      // Show the recommendation
+      document.getElementById("result").textContent = `We recommend the ${recommendation} course for you!`;
+
+      // Save the recommendation to Firestore
+      db.collection("courses").add({
+        coaching: coaching,
+        budget: budget,
+        services: services,
+        recommendation: recommendation
+      }).then(() => {
+        console.log("Recommendation saved to Firestore");
+      }).catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+    }
+  </script>
+</body>
+</html>
