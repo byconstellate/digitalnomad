@@ -58,7 +58,7 @@
         </div>
         <div class="footer">
             <!-- Footer with affirmation and audio -->
-            <audio id="audioPlayer" muted autoplay>
+            <audio id="audioPlayer" autoplay muted>
                 <source id="audioSource" type="audio/mp3">
                 Your browser does not support the audio element.
             </audio>
@@ -77,8 +77,8 @@
             { text: "I instantly made money online", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/moneyonline.mp3" },
             { text: "I instantly take steps to become a successful digital nomad", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomadaction.mp3" },
             { text: "I am a sales magnet", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/magnet.mp3" },
-            { text: "My abundance streams are open", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/abundance.mp3" }, <!-- Corrected URL -->
-            { text: "I have lots of savings", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/savings.mp3" }, <!-- Corrected URL -->
+            { text: "My abundance streams are open", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/abundance.mp3" }, <!-- Ensure this file exists -->
+            { text: "I have lots of savings", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/savings.mp3" },
             { text: "My online business is booming", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/vbop.mp3" }
         ];
 
@@ -114,28 +114,8 @@
 
                 // Play audio and handle transitions
                 audioPlayer.load();
-                audioPlayer.play().then(() => {
-                    audioPlayer.muted = false; // Unmute after loading
-                }).catch(error => {
-                    console.error('Playback error:', error);
-                });
-
-                // Move to next affirmation when audio ends
-                audioPlayer.onended = function() {
-                    currentIndex = (currentIndex + 1) % affirmations.length;
-                    playCurrentAffirmation();
-                };
-            } else {
-                console.error('No affirmation found to play.');
-            }
-        }
-
-        // Autoplay the affirmations after a 3-second delay
-        window.onload = function() {
-            setTimeout(() => {
-                playCurrentAffirmation();
-            }, 3000); // 3-second delay before showing the affirmation
-        };
-    </script>
-</body>
-</html>
+                setTimeout(() => {
+                    audioPlayer.muted = false; // Unmute after 3 seconds
+                    audioPlayer.play().then(() => {
+                        console.log('Audio is playing');
+                    }).catch(error => {
