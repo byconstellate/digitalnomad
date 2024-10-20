@@ -14,6 +14,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
+            background-color: white; /* Consistent background color */
         }
 
         /* Container for the image and footer */
@@ -31,7 +32,7 @@
 
         /* Footer styling */
         .footer {
-            background-color: #00FFFF; /* Cyan background on mobile */
+            background-color: #00FFFF; /* Cyan background */
             color: white;
             text-align: center;
             font-size: 24px;
@@ -46,66 +47,12 @@
             margin: 0;
             padding: 0;
         }
-
-        /* Play button styling for mobile */
-        .play-button {
-            background-color: #00FFFF;
-            color: white;
-            border: none;
-            font-size: 80px;
-            cursor: pointer;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            width: 100vw;
-            height: 100vh; /* Take up entire viewport */
-        }
-
-        /* Show the cyan background and text centered only on mobile */
-        @media only screen and (max-width: 768px) {
-            body {
-                background-color: #00FFFF;
-            }
-
-            /* Full-screen play button on mobile */
-            .play-button {
-                display: flex; /* Show full-screen play button */
-                justify-content: center;
-                align-items: center;
-                font-size: 80px;
-            }
-
-            .scrollable-content {
-                display: none; /* Hide image until play button is clicked */
-            }
-
-            /* Center the text on mobile */
-            .affirmation {
-                text-align: center;
-            }
-        }
-
-        /* Show image and footer on larger screens */
-        @media only screen and (min-width: 769px) {
-            body {
-                background-color: white; /* White background on larger screens */
-            }
-
-            .play-button {
-                display: none; /* Hide the play button on desktop */
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Play button will be full-screen on mobile, above the image -->
-    <button class="play-button" id="playButton">
-        <i class="fas fa-play"></i>
-    </button>
-
     <div class="container" id="contentSection">
         <div class="image-container">
-            <!-- Image that will always be displayed after play button is clicked -->
+            <!-- Image that will always be displayed -->
             <img src="https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp" alt="Digital Nomad Image">
         </div>
         <div class="footer">
@@ -128,7 +75,7 @@
             { text: "I make sales every day", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/imakemoneyeveryday.mp3" },
             { text: "I instantly made money online", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/moneyonline.mp3" },
             { text: "I instantly take steps to become a successful digital nomad", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomadaction.mp3" },
-            { text: "I am a sales magnet", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/magnet.mp3" } // New affirmation
+            { text: "I am a sales magnet", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/magnet.mp3" }
         ];
 
         let currentIndex = 0;
@@ -176,19 +123,10 @@
             }
         }
 
-        // Play affirmations on larger screens
-        if (window.innerWidth >= 769) {
-            window.onload = function() {
-                playCurrentAffirmation();
-            };
-        }
-
-        // Event listener for play button on mobile
-        document.getElementById('playButton').addEventListener('click', function() {
-            document.getElementById('playButton').style.display = 'none'; // Hide play button
-            document.getElementById('contentSection').style.display = 'block'; // Show image content
-            playCurrentAffirmation(); // Start affirmations
-        });
+        // Autoplay the affirmations after a 3-second delay
+        window.onload = function() {
+            setTimeout(playCurrentAffirmation, 3000); // 3-second delay
+        };
     </script>
 </body>
 </html>
