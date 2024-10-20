@@ -114,11 +114,14 @@
 
                 // Play audio and handle transitions
                 audioPlayer.load();
-                audioPlayer.play().then(() => {
-                    audioPlayer.muted = false; // Unmute after loading
-                }).catch(error => {
-                    console.error('Playback error:', error);
-                });
+                setTimeout(() => {
+                    audioPlayer.muted = false; // Unmute after a short delay
+                    audioPlayer.play().then(() => {
+                        console.log('Audio is playing');
+                    }).catch(error => {
+                        console.error('Playback error:', error);
+                    });
+                }, 500); // Unmute after 500ms delay
 
                 // Move to next affirmation when audio ends
                 audioPlayer.onended = function() {
@@ -136,14 +139,6 @@
                 playCurrentAffirmation();
             }, 3000); // 3-second delay before showing the affirmation
         };
-
-        // Add an event listener to retry playing the audio if there's an error
-        const audioPlayer = document.getElementById('audioPlayer');
-        audioPlayer.addEventListener('error', function() {
-            setTimeout(() => {
-                playCurrentAffirmation(); // Retry playing the current affirmation
-            }, 1000); // Retry after a short delay
-        });
     </script>
 </body>
 </html>
