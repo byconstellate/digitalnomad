@@ -120,14 +120,15 @@
 
                 // Play audio and handle transitions
                 audioPlayer.load();
-                setTimeout(() => {
-                    audioPlayer.muted = false; // Unmute after a short delay
-                    audioPlayer.play().then(() => {
-                        console.log('Audio is playing');
-                    }).catch(error => {
-                        console.error('Playback error:', error);
-                    });
-                }, 500); // Unmute after 500ms delay
+                audioPlayer.play().then(() => {
+                    console.log('Audio is playing');
+                    audioPlayer.muted = false; // Unmute after audio starts playing
+                }).catch(error => {
+                    console.error('Playback error:', error);
+                    setTimeout(() => {
+                        playCurrentAffirmation(); // Retry playing if it fails
+                    }, 1000);
+                });
 
                 // Move to next affirmation when audio ends
                 audioPlayer.onended = function() {
