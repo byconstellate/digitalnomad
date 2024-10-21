@@ -48,9 +48,50 @@
             padding: 0;
             display: none; /* Initially hide the affirmation */
         }
+
+        /* Mobile-specific styles */
+        .mobile-message {
+            display: none;
+            font-size: 24px;
+            color: #00FFFF; /* Cyan text */
+            text-align: center;
+            font-family: Courier, monospace;
+            background-color: white;
+            padding: 20px;
+            text-transform: uppercase; /* Capital letters */
+        }
+
+        @media only screen and (max-width: 768px) {
+            /* On mobile, show the cyan text message */
+            .container {
+                display: none;
+            }
+
+            .mobile-message {
+                display: block;
+            }
+        }
+
+        @media only screen and (min-width: 769px) {
+            /* On desktop/laptop, show the main content */
+            .mobile-message {
+                display: none;
+            }
+
+            .container {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Message for mobile users -->
+    <div class="mobile-message">
+        This experience is best viewed on a desktop or laptop. Please access it from a larger device for the full experience.
+    </div>
+
+    <!-- Regular content for desktop/laptop users -->
     <div class="container" id="contentSection">
         <div class="image-container">
             <!-- Image that will always be displayed -->
