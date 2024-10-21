@@ -21,25 +21,23 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Ensures footer stays at the bottom */
+            justify-content: flex-end; /* Keeps footer at bottom */
         }
 
         .image-container img {
             width: 100%;
             height: auto; /* Keep aspect ratio */
             display: block;
-            flex-shrink: 0; /* Prevents shrinking */
         }
 
-        /* Footer styling */
+        /* Old Footer styling */
         .footer {
             background-color: #00FFFF; /* Cyan background */
             color: white;
             text-align: center;
             font-size: 24px;
-            padding: 20px;
+            padding: 10px;
             box-sizing: border-box;
-            flex-shrink: 0; /* Prevents shrinking */
         }
 
         .affirmation {
@@ -97,7 +95,80 @@
     </div>
 
     <script>
-        // JavaScript code remains the same as before for playing audio, etc.
+        // Array of affirmations and corresponding audio URLs
+        const affirmations = [
+            { text: "I have so much money in my bank account", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/bankaccount.mp3" },
+            { text: "I am so rich", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/healthy.mp3" },
+            { text: "God’s Plan is for me to be a successful digital nomad", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/godplan.mp3" },
+            { text: "I love being a digital nomad", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad1.mp3" },
+            { text: "I make sales every day", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/imakemoneyeveryday.mp3" },
+            { text: "I instantly made money online", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/moneyonline.mp3" },
+            { text: "I instantly take steps to become a successful digital nomad", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomadaction.mp3" },
+            { text: "I am a sales magnet", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/magnet.mp3" },
+            { text: "My abundance streams are open", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/abundance.mp3" },
+            { text: "I have lots of savings", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/savings.mp3" },
+            { text: "My online business is booming", url: "https://raw.githubusercontent.com/byconstellate/digitalnomad/main/vbop.mp3" }
+        ];
+
+        let currentIndex = 0;
+
+        // Function to shuffle the affirmations randomly
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Shuffle affirmations before starting
+        shuffleArray(affirmations);
+
+        // Function to play current affirmation
+        function playCurrentAffirmation() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const audioSource = document.getElementById('audioSource');
+            const affirmationElement = document.getElementById('affirmation');
+
+            // Get the current affirmation
+            const selectedAffirmation = affirmations[currentIndex];
+
+            if (selectedAffirmation) {
+                // Set the affirmation text and audio URL
+                affirmationElement.textContent = selectedAffirmation.text;
+                audioSource.src = selectedAffirmation.url;
+
+                // Show the affirmation
+                affirmationElement.style.display = 'block';
+
+                // Play audio and handle transitions
+                audioPlayer.load();
+                audioPlayer.play().then(() => {
+                    console.log('Audio is playing');
+                    audioPlayer.muted = false; // Unmute after audio starts playing
+                }).catch(error => {
+                    console.error('Playback error:', error);
+                    setTimeout(() => {
+                        playCurrentAffirmation(); // Retry playing if it fails
+                    }, 1000);
+                });
+
+                // Move to next affirmation when audio ends
+                audioPlayer.onended = function() {
+                    currentIndex = (currentIndex + 1) % affirmations.length;
+                    playCurrentAffirmation(); // Play next affirmation
+                };
+            } else {
+                console.error('No affirmation found to play.');
+            }
+        }
+
+        // Autoplay the first affirmation after a 3-second delay
+        window.onload = function() {
+            setTimeout(() => {
+                playCurrentAffirmation();
+            }, 3000); // 3-second delay before showing the affirmation
+        };
+
     </script>
 
 </body>
