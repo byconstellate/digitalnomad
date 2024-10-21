@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Nomad Experience</title>
+    <!-- Link to Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* General styles */
         html, body {
@@ -17,11 +19,9 @@
 
         /* Container for the image and footer */
         .container {
-            display: none; /* Hide content by default */
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Keeps footer at bottom */
         }
 
         .image-container img {
@@ -30,67 +30,39 @@
             display: block;
         }
 
-        /* Old Footer styling */
+        /* Footer styling */
         .footer {
             background-color: #00FFFF; /* Cyan background */
             color: white;
             text-align: center;
             font-size: 24px;
-            padding: 10px;
+            padding: 20px;
             box-sizing: border-box;
         }
 
         .affirmation {
             font-family: Courier, monospace;
             font-size: 32px;
-            color: black;
+            color: white;
             margin: 0;
             padding: 0;
-            text-align: center;
-        }
-
-        .mobile-message {
-            display: none; /* Hidden by default */
-            font-size: 24px;
-            color: #00FFFF; /* Cyan color */
-            text-align: center;
-            font-family: Courier, monospace;
-            background-color: white;
-            padding: 20px;
-            text-transform: uppercase; /* Capital letters */
-        }
-
-        @media only screen and (max-width: 768px) {
-            /* Show mobile message for smaller screens */
-            .mobile-message {
-                display: block;
-            }
-        }
-
-        @media only screen and (min-width: 769px) {
-            /* Show the regular content on larger screens */
-            .container {
-                display: flex;
-            }
+            display: none; /* Initially hide the affirmation */
         }
     </style>
 </head>
 <body>
-
-    <!-- Message for mobile users -->
-    <div class="mobile-message">
-        This experience is best viewed on a desktop or laptop. Please access it from a larger device for the full experience.
-    </div>
-
-    <!-- Regular content for desktop/laptop users -->
     <div class="container" id="contentSection">
         <div class="image-container">
             <!-- Image that will always be displayed -->
             <img src="https://raw.githubusercontent.com/byconstellate/digitalnomad/main/digitalnomad5.webp" alt="Digital Nomad Image">
         </div>
         <div class="footer">
-            <!-- Footer with affirmation -->
-            <div id="affirmation" class="affirmation">I instantly take steps to become a successful digital nomad</div>
+            <!-- Footer with affirmation and audio -->
+            <audio id="audioPlayer" muted>
+                <source id="audioSource" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            <div id="affirmation" class="affirmation">I am a sales magnet</div>
         </div>
     </div>
 
@@ -142,15 +114,14 @@
 
                 // Play audio and handle transitions
                 audioPlayer.load();
-                audioPlayer.play().then(() => {
-                    console.log('Audio is playing');
-                    audioPlayer.muted = false; // Unmute after audio starts playing
-                }).catch(error => {
-                    console.error('Playback error:', error);
-                    setTimeout(() => {
-                        playCurrentAffirmation(); // Retry playing if it fails
-                    }, 1000);
-                });
+                setTimeout(() => {
+                    audioPlayer.muted = false; // Unmute after a short delay
+                    audioPlayer.play().then(() => {
+                        console.log('Audio is playing');
+                    }).catch(error => {
+                        console.error('Playback error:', error);
+                    });
+                }, 500); // Unmute after 500ms delay
 
                 // Move to next affirmation when audio ends
                 audioPlayer.onended = function() {
@@ -168,8 +139,6 @@
                 playCurrentAffirmation();
             }, 3000); // 3-second delay before showing the affirmation
         };
-
     </script>
-
 </body>
 </html>
